@@ -3,3 +3,12 @@
 A Go wrapper for Facebook's [Yoga](https://github.com/facebook/yoga) layout engine.
 
 Bindings generated with [c-for-go](https://github.com/xlab/c-for-go).
+
+## Todo
+
+- Documentation
+- Tests
+
+## Missing
+
+- Logging related features (cgo lacks support for variadic parameters)
