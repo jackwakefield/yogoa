@@ -30,9 +30,5 @@
   unused-packages = true
 
 [[constraint]]
-  name = "github.com/spf13/cast"
-  version = "1.2.0"
-
-[[constraint]]
   name = "github.com/stretchr/testify"
   version = "1.2.1"
