@@ -1,7 +1,3 @@
 package yogoa
 
-import (
-	"github.com/jackwakefield/yogoa/yoga"
-)
-
-const Undefined = yoga.Undefined
+const Undefined = float32(10E20)

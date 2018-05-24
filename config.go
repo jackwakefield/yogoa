@@ -1,8 +1,6 @@
 package yogoa
 
 import (
-	"unsafe"
-
 	"github.com/jackwakefield/yogoa/yoga"
 )
 
@@ -24,12 +22,9 @@ func NewConfig() *Config {
 }
 
 func newConfig(ref yoga.ConfigRef) *Config {
-	c := &Config{
+	return &Config{
 		ref: ref,
 	}
-	context := unsafe.Pointer(c)
-	yoga.ConfigSetContext(c.ref, context)
-	return c
 }
 
 func ConfigCount() int {
@@ -111,11 +106,11 @@ func (c *Config) SetNodeCloned(listener NodeCloned) {
 
 func (c *Config) onCloned(oldRef yoga.NodeRef, newRef yoga.NodeRef, parentRef yoga.NodeRef, childIndex int32) {
 	if c.ref != nil && c.clonedListener != nil {
-		oldNode := nodeFromRef(oldRef)
-		newNode := nodeFromRef(newRef)
-		parentNode := nodeFromRef(parentRef)
+		oldNode := newNode(oldRef)
+		node := newNode(newRef)
+		parentNode := newNode(parentRef)
 
-		c.clonedListener(oldNode, newNode, parentNode, childIndex)
+		c.clonedListener(oldNode, node, parentNode, childIndex)
 	}
 }
 

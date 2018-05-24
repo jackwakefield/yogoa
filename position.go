@@ -5,8 +5,8 @@ import "github.com/jackwakefield/yogoa/yoga"
 type PositionType int32
 
 const (
-	PositionTypeRelative = PositionType(yoga.PositionTypeRelative)
-	PositionTypeAbsolute = PositionType(yoga.PositionTypeAbsolute)
+	PositionRelative = PositionType(yoga.PositionTypeRelative)
+	PositionAbsolute = PositionType(yoga.PositionTypeAbsolute)
 )
 
 func (p PositionType) String() string {

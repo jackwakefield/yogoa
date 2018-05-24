@@ -9,11 +9,16 @@ tar xzvf $YOGA_VERSION.tar.gz
 rm -rf ../yoga
 mkdir -p ../yoga
 mv yoga-$YOGA_VERSION/yoga/*.{cpp,h} ../yoga/
-mv yoga-$YOGA_VERSION/LICENSE ../yoga/
+cp yoga-$YOGA_VERSION/LICENSE ../yoga/
+
+rm -rf ../gentest/fixtures
+mkdir -p ../gentest/fixtures
+mv yoga-$YOGA_VERSION/gentest/fixtures ../gentest/
+cp yoga-$YOGA_VERSION/LICENSE ../gentest/
 
 cd ../yoga
 patch < ../scripts/yoga.patch
-cd ../scripts
 
+cd ../scripts
 rm -rf yoga-$YOGA_VERSION
 rm -f $YOGA_VERSION.tar.gz

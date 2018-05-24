@@ -1,8 +1,6 @@
 package yogoa
 
 import (
-	"unsafe"
-
 	"github.com/jackwakefield/yogoa/yoga"
 )
 
@@ -50,7 +48,7 @@ func NewNodeWithConfig(config *Config) *Node {
 }
 
 func newNode(ref yoga.NodeRef) *Node {
-	node := &Node{
+	return &Node{
 		ref: ref,
 		style: &NodeStyle{
 			ref: ref,
@@ -59,18 +57,6 @@ func newNode(ref yoga.NodeRef) *Node {
 			ref: ref,
 		},
 	}
-	context := unsafe.Pointer(node)
-	yoga.NodeSetContext(node.ref, context)
-	return node
-}
-
-func nodeFromRef(ref yoga.NodeRef) *Node {
-	if ref != nil {
-		if context := yoga.NodeGetContext(ref); context != nil {
-			return (*Node)(context)
-		}
-	}
-	return nil
 }
 
 func NodeCount() int {
@@ -118,7 +104,7 @@ func (n *Node) Reset() {
 
 func (n *Node) InsertChild(child *Node, index uint32) {
 	if n.ref != nil && child.ref != nil {
-		yoga.NodeInsertChild(n.ref, child.ref, uint32(index))
+		yoga.NodeInsertChild(n.ref, child.ref, index)
 	}
 }
 
@@ -191,14 +177,6 @@ func (n *Node) CopyStyle(dest *Node) {
 	if n.ref != nil && dest.ref != nil {
 		yoga.NodeCopyStyle(dest.ref, n.ref)
 	}
-}
-
-func (n *Node) Context() interface{} {
-	return n.context
-}
-
-func (n *Node) SetContext(context interface{}) {
-	n.context = context
 }
 
 func (n *Node) MeasureListener() NodeMeasure {
@@ -431,7 +409,7 @@ func (s *NodeStyle) PositionType() PositionType {
 	if s.ref != nil {
 		return PositionType(yoga.NodeStyleGetPositionType(s.ref))
 	}
-	return PositionTypeRelative
+	return PositionRelative
 }
 
 func (s *NodeStyle) SetPositionType(positionType PositionType) {
@@ -444,7 +422,7 @@ func (s *NodeStyle) FlexWrap() Wrap {
 	if s.ref != nil {
 		return Wrap(yoga.NodeStyleGetFlexWrap(s.ref))
 	}
-	return WrapNoWrap
+	return WrapNone
 }
 
 func (s *NodeStyle) SetFlexWrap(flexWrap Wrap) {
