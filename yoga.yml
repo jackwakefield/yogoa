@@ -22,7 +22,7 @@ PARSER:
 
 TRANSLATOR: 
   ConstRules: 
-    defines: expand
+    defines: eval
   Rules: 
     global:   
       - {action: accept, from: "^YG+"}
