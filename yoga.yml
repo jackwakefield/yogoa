@@ -10,7 +10,7 @@ GENERATOR:
       -I../yoga
     ]}  
     - {name: "CXXFLAGS", flags: [
-      -std=c++14
+      -std=c++11
     ]}
     - {name: "LDFLAGS", flags: [
       -lm
